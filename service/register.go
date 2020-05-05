@@ -1,6 +1,7 @@
 package service
 
 import (
+	"financial-planner/constanta"
 	model "financial-planner/model/vo"
 	"financial-planner/repository"
 
@@ -9,7 +10,7 @@ import (
 
 // Register route
 func Register(c *gin.Context) {
-	res := BuildResponse(1, "Success")
+	res := BuildResponse(constanta.SuccessCode, constanta.SuccessMessage)
 	httpStatus := 200
 
 	var userData model.User
@@ -17,7 +18,7 @@ func Register(c *gin.Context) {
 
 	statusInsert := repository.CreateUser(userData)
 	if !statusInsert {
-		res = BuildResponse(11, "User have been used")
+		res = BuildResponse(constanta.UserExistCode, constanta.UserExistMessage)
 	}
 
 	c.JSON(httpStatus, res)

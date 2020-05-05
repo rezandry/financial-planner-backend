@@ -1,5 +1,7 @@
 package model
 
+import "financial-planner/constanta"
+
 // Status for default structure code response and message
 type Status struct {
 	Code    int    `json:"code"`
@@ -16,7 +18,7 @@ type Response struct {
 func (r *Response) SetCode(code int) {
 	r.Status.Code = code
 	if code == 0 {
-		r.Status.Code = 1
+		r.Status.Code = constanta.SuccessCode
 	}
 }
 
@@ -24,6 +26,6 @@ func (r *Response) SetCode(code int) {
 func (r *Response) SetMessage(message string) {
 	r.Status.Message = message
 	if message == "" {
-		r.Status.Message = "Success"
+		r.Status.Message = constanta.SuccessMessage
 	}
 }
